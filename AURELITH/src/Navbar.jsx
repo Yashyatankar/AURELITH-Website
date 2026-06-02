@@ -1,4 +1,8 @@
 import React from 'react'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { useEffect, useRef } from 'react';
+import { useGSAP } from "@gsap/react";
 
 const navbarlist = [
   { name: "Home", href: "/" },
@@ -9,9 +13,25 @@ const navbarlist = [
 ]
 
 const Navbar = () => {
+
+  useGSAP(() => {
+
+    gsap.from("#navbar", {
+
+      y: -50,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+
+    })
+
+  },[]);
+
+
+
   return (
     <div className="bg-[#8b5a3c] text-[#e8ddd5] fixed top-5 left-1/2 -translate-x-1/2 
-    rounded-full z-50 py-3 px-8">
+    rounded-full z-50 py-3 px-8" id='navbar'>
 
       <ul className="flex items-center gap-8">
         {navbarlist.map((item) => (
