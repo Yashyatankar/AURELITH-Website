@@ -36,11 +36,7 @@ function App() {
     })
   }, []);
 
-  useGSAP(() => {
 
-
-
-  }, []);
 
   return (
     <>  
