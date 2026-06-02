@@ -4,8 +4,8 @@ const navbarlist = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "AURELITH", href: "/" },
+  { name: "Collections", href: "/collections" },
   { name: "Contact", href: "/contact" },
-  { name: "Collections", href: "/collections" }
 ]
 
 const Navbar = () => {
