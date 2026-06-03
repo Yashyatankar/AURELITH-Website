@@ -1,12 +1,23 @@
 import { useState } from 'react'
-import Navbar from './Navbar'
+import Navbar from './assets/Components/Navbar'
 import './index.css'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import { useEffect, useRef } from 'react';
+import Lenis from 'lenis'
 import { useGSAP } from "@gsap/react";
+import { ScrollVideo } from './assets/Components/ScrollVideo';
 
 function App() {
+
+  const lenis = new Lenis();
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
   
   gsap.registerPlugin(ScrollTrigger);
 
@@ -36,13 +47,16 @@ function App() {
     })
   }, []);
 
+  useGSAP(() => {
 
+
+
+  }, []);
 
   return (
     <>  
 
     <Navbar />
-    
     <div className="relative h-screen w-full bg-[#0f0a0a] overflow-hidden">
 
       {/* Glow - centered */}
@@ -100,8 +114,9 @@ function App() {
           </button>
         </div>
       </div>
-
-
+    
+      <ScrollVideo />
+      
     </div>
   </>
   )
