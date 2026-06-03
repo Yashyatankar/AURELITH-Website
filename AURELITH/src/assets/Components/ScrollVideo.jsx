@@ -12,6 +12,7 @@ const ScrollVideo = () => {
   const [loaded, setLoaded] = useState(false);
 
   // Effect 1 — preload all frames into memory
+  
   useEffect(() => {
     let loadedCount = 0;
     const frameImages = [];
@@ -82,10 +83,97 @@ const ScrollVideo = () => {
     };
   }, [loaded]);
 
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.from("#about-us-text", {
+      scrollTrigger: {
+        trigger: "#about-us-text",
+        start: "top 50%",
+        end: "bottom top",
+        scrub: true,
+        markers: true,
+      },
+      
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    });
+  });
+
+  return () => ctx.revert();
+}, []);
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.from("#our-team", {
+      scrollTrigger: {
+        trigger: "#our-team",
+        start: "top 50%",
+        end: "bottom top",
+        scrub: true,
+        markers: true,
+      },
+
+      x: -100,
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    });
+  });
+
+  return () => ctx.revert();
+}, []);
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.from("#our-vision", {
+      scrollTrigger: {
+        trigger: "#our-vision",
+        start: "top 50%",
+        end: "bottom top",
+        scrub: true,
+        markers: true,
+      },
+      x: -100,
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    });
+  });
+
+  return () => ctx.revert();
+}, []);
+
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    gsap.from("#our-services", {
+      scrollTrigger: {
+        trigger: "#our-services",
+        start: "top 60%",
+        end: "bottom top",
+        scrub: true,
+        markers: true,
+      },
+      x: -100,
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    });
+  });
+
+  return () => ctx.revert();
+}, []);
+
+
   return (
-    <section className="w-full bg-black">
+    <section className="relative w-full bg-black">
       {!loaded && (
-        <div className="flex items-center justify-center h-screen bg-black text-white text-sm tracking-widest opacity-50">
+        <div className="flex items-center justify-center h-screen bg-black text-white text-sm tracking-widest ">
           LOADING...
         </div>
       )}
@@ -97,6 +185,44 @@ const ScrollVideo = () => {
           imageRendering: "crisp-edges",
         }}
       />
+    
+        <div className='absolute flex flex-col items-center justify-center top-[10%] w-full gap-4' id='about-us-text'>
+
+            <h1 className='text-9xl font-bold text-[#c9a87c] font-cinzel'>Who we are<br /></h1>
+            
+            <p className='text-xl text-[#e8ddd5] font-inter'>Crafting immersive experiences where design meets purpose.</p>
+
+        </div>
+
+        <div className="absolute grid grid-cols-4 grid-rows-4 gap-10 w-full top-[30%] p-10" id='our-team'>
+
+
+          <div className="col-span-2 row-span-1 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full">
+   
+
+            <p className="text-4xl text-[#e8ddd5] font-inter">
+                A diverse group of designers, developers, and creative thinkers united by a shared passion for excellence. Together we transform ideas into meaningful experiences through collaboration and innovation.
+            </p>
+          </div>
+
+          <div className="col-span-2 row-span-3 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full" id ='our-vision'>
+
+
+            <p className="text-4xl text-[#e8ddd5] font-inter">
+                To push the boundaries of digital creativity and deliver unforgettable experiences — blending creativity, technology, and purpose to craft work that is visually striking, meaningful, and timeless.
+            </p>
+          </div>
+          
+
+          <div className="col-span-2 row-span-3 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full" id ='our-services'>
+   
+
+            <p className="text-4xl text-[#e8ddd5] font-inter">
+              We help brands find their digital voice — combining creative direction with data-driven thinking to deliver work that resonates and performs.            </p>
+          </div>
+
+        </div>
+
     </section>
   );
 };
