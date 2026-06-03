@@ -73,7 +73,7 @@ function App() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40"
       >
         <img
-          src="/images/WomenPhoto.png"
+          src="/public/images/WomenPhoto.png"
           alt="Hero Image"
           className="h-full w-[500px] object-contain object-center opacity-90 " id="hero-image"
         />
