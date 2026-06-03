@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Navbar from './assets/Components/Navbar'
 import './index.css'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
-import { useEffect, useRef } from 'react';
 import Lenis from 'lenis'
 import { useGSAP } from "@gsap/react";
-import { ScrollVideo } from './assets/Components/ScrollVideo';
+
 
 function App() {
 
-  const lenis = new Lenis();
+  const lenis = new Lenis({
+    duration: 1.3,
+  });
 
   function raf(time) {
     lenis.raf(time);
@@ -69,10 +70,10 @@ function App() {
       {/* Image - centered */}
       <div
         
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40"
       >
         <img
-          src="/WomenPhoto.png"
+          src="/images/WomenPhoto.png"
           alt="Hero Image"
           className="h-full w-[500px] object-contain object-center opacity-90 " id="hero-image"
         />
@@ -115,8 +116,8 @@ function App() {
         </div>
       </div>
     
-      <ScrollVideo />
       
+
     </div>
   </>
   )
