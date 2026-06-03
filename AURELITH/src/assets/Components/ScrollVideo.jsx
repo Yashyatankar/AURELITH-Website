@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger); // move outside component
+gsap.registerPlugin(ScrollTrigger);
 
 const TOTAL_FRAMES = 105;
 
@@ -11,14 +11,14 @@ const ScrollVideo = () => {
   const imagesRef = useRef([]);
   const [loaded, setLoaded] = useState(false);
 
-  // Step 1 — preload all frames
+  // Effect 1 — preload all frames into memory
   useEffect(() => {
     let loadedCount = 0;
     const frameImages = [];
 
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
-      img.src = `/frames/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`;
+      img.src = `/frames/frame_${i.toString().padStart(3, '0')}.jpg`;
       img.onload = () => {
         loadedCount++;
         if (loadedCount === TOTAL_FRAMES) {
@@ -26,36 +26,39 @@ const ScrollVideo = () => {
           setLoaded(true);
         }
       };
-      frameImages.push(img); // push the Image object, not img.src
+      frameImages.push(img);
     }
   }, []);
 
-  // Step 2 — setup GSAP scrub after frames are loaded
+  // Effect 2 — setup canvas + GSAP scrub once frames are ready
   useEffect(() => {
     if (!loaded) return;
 
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    const scale = window.devicePixelRatio || 1;
 
-    canvas.width = 1920 * scale;
-    canvas.height = 1080 * scale;
-    context.scale(scale, scale);
+    // Match canvas resolution to its rendered size × device pixel ratio
+    const setupCanvas = () => {
+      const scale = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * scale;
+      canvas.height = canvas.offsetHeight * scale;
+      context.scale(scale, scale);
+    };
 
-    const frameIndex = { frame: 0 };
+    setupCanvas();
 
-    // Draw a specific frame onto canvas
     const drawFrame = (index) => {
       const img = imagesRef.current[index];
       if (!img?.complete) return;
       context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(img, 0, 0, canvas.width / scale, canvas.height / scale);
+      context.drawImage(img, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
     };
 
-    // Draw first frame immediately
+    // Draw first frame immediately so canvas isn't blank
     drawFrame(0);
 
-    // GSAP scroll scrub
+    const frameIndex = { frame: 0 };
+
     gsap.to(frameIndex, {
       frame: TOTAL_FRAMES - 1,
       snap: "frame",
@@ -63,27 +66,36 @@ const ScrollVideo = () => {
       scrollTrigger: {
         trigger: canvas,
         start: "top top",
-        end: "+=200%",   // scroll 2x screen height to go through all frames
-        scrub: 0.5,      // slight smoothing
-        pin: true,       // pins the canvas while scrubbing
+        end: "+=200%",
+        scrub: 0.5,
+        pin: true,
       },
       onUpdate: () => drawFrame(Math.round(frameIndex.frame)),
     });
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+    // Re-setup canvas on window resize to keep quality sharp
+    window.addEventListener('resize', setupCanvas);
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      window.removeEventListener('resize', setupCanvas);
+    };
   }, [loaded]);
 
   return (
     <section className="w-full bg-black">
       {!loaded && (
-        <div className="flex items-center justify-center h-screen bg-black text-white text-sm tracking-widest">
+        <div className="flex items-center justify-center h-screen bg-black text-white text-sm tracking-widest opacity-50">
           LOADING...
         </div>
       )}
       <canvas
         ref={canvasRef}
-        className="w-full"
-        style={{ display: loaded ? "block" : "none" }}
+        className="w-full h-screen"
+        style={{
+          display: loaded ? "block" : "none",
+          imageRendering: "crisp-edges",
+        }}
       />
     </section>
   );
