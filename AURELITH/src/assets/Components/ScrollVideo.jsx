@@ -136,7 +136,7 @@ useEffect(() => {
         scrub: true,
         markers: true,
       },
-      x: -100,
+      x: 200,
       opacity: 0,
       y: 50,
       duration: 1,
@@ -171,7 +171,7 @@ useEffect(() => {
 
 
   return (
-    <section className="relative w-full bg-black">
+    <section className="relative w-full bg-black overflow-hidden">
       {!loaded && (
         <div className="flex items-center justify-center h-screen bg-black text-white text-sm tracking-widest ">
           LOADING...
@@ -197,27 +197,27 @@ useEffect(() => {
         <div className="absolute grid grid-cols-4 grid-rows-4 gap-10 w-full top-[30%] p-10" id='our-team'>
 
 
-          <div className="col-span-2 row-span-1 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full">
+          <div className="col-span-2 row-span-1 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full bg-[#c9a87c]">
    
 
-            <p className="text-4xl text-[#e8ddd5] font-inter">
+            <p className="text-4xl text-[#8b5a3c] font-inter my-4 py-4">
                 A diverse group of designers, developers, and creative thinkers united by a shared passion for excellence. Together we transform ideas into meaningful experiences through collaboration and innovation.
             </p>
           </div>
 
-          <div className="col-span-2 row-span-3 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full" id ='our-vision'>
+          <div className="col-span-2 row-span-3 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full bg-[#c9a87c]" id ='our-vision'>
 
 
-            <p className="text-4xl text-[#e8ddd5] font-inter">
+            <p className="text-4xl text-[#8b5a3c] font-inter">
                 To push the boundaries of digital creativity and deliver unforgettable experiences — blending creativity, technology, and purpose to craft work that is visually striking, meaningful, and timeless.
             </p>
           </div>
           
 
-          <div className="col-span-2 row-span-3 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full" id ='our-services'>
+          <div className="col-span-2 row-span-3 flex flex-col items-start justify-center gap-6 px-16 z-20 w-full bg-[#c9a87c]" id ='our-services'>
    
 
-            <p className="text-4xl text-[#e8ddd5] font-inter">
+            <p className="text-4xl text-[#8b5a3c] font-inter">
               We help brands find their digital voice — combining creative direction with data-driven thinking to deliver work that resonates and performs.            </p>
           </div>
 

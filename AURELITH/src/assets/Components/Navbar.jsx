@@ -39,7 +39,7 @@ const Navbar = () => {
             <a href={item.href} className="hover:text-[#c9a87c] text-sm tracking-wide font-cinzel font-bold">
               {item.name}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 mt-1 group-hover:w-full 
-              group-hover:bg-linear-to-r group-hover:from-[#000000] group-hover:to-[#9a7830]   
+              group-hover:bg-[#e8ddd5]
               transition-all duration-300 rounded-full"></span>
             </a>
           </li>
