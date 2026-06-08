@@ -9,3 +9,5 @@
   --font-cinzel: "Cinzel", serif;
   --font-inter: "Inter", sans-serif;
 }
+
+.collection-scroll::-webkit-scrollbar { display: none; }
