@@ -30,8 +30,8 @@ const Navbar = () => {
 
 
   return (
-    <div className="bg-[#8b5a3c] text-[#e8ddd5] fixed top-5 left-1/2 -translate-x-1/2 
-    rounded-full z-50 py-3 px-8" id='navbar'>
+    <div className="bg-[#c9a87c66] text-[#e8ddd5] fixed top-5 left-1/2 -translate-x-1/2 
+    rounded-full z-50 py-3 px-8 border-2 border-[#c9a87c]" id='navbar'>
 
       <ul className="flex items-center gap-8">
         {navbarlist.map((item) => (
