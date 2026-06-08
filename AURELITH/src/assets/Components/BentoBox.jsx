@@ -17,7 +17,7 @@ export default function BentoGrid() {
         style={{ gridColumn: "1/4", gridRow: "1/6", background: "radial-gradient(ellipse at 30% 70%, #1e1608 0%, #0a0805 70%)" }}
       >
         <video src="public/Videos/ModelVideo-2.mp4" autoPlay muted loop 
-            className="absolute inset-0 w-full h-full object-cover brightness-50"></video>
+            className="absolute inset-0 w-full h-full object-cover brightness-50 group-hover:brightness-100 transition-all duration-300 "></video>
         <GoldShimmer />
         <CornerMark pos="tl" />
         <CornerMark pos="br" />
@@ -35,7 +35,7 @@ export default function BentoGrid() {
         style={{ gridColumn: "4/9", gridRow: "1/9", background: "#0d0b08" }}
       >
         <video src="public/Videos/ModelVideo-1.mp4" autoPlay muted loop 
-            className="absolute inset-0 w-full h-full object-cover brightness-50"></video>
+            className="absolute inset-0 w-full h-full object-cover brightness-50 group-hover:brightness-100 transition-all duration-300"></video>
         <GoldShimmer />
         <div className="absolute inset-0 flex flex-col justify-end p-4">
           <span className="inline-block font-['Inter'] text-[9px] tracking-[0.15em] uppercase text-[#c9a87c] border border-[#c9a87c44] rounded-full px-2.5 py-0.5 mb-2 w-fit">New Collection</span>
@@ -74,7 +74,7 @@ export default function BentoGrid() {
         className="group relative rounded-xl overflow-hidden border border-[#c9a87c22] hover:border-[#c9a87c88] hover:scale-[1.012] transition-all duration-300 z-0 hover:z-10"
         style={{ gridColumn: "1/4", gridRow: "6/11", background: "#0d0b08" }}
       >
-        <img src="/public/Images/Necklace-1.jpg" alt="Necklace" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/public/Images/Necklace-1.jpg" alt="Necklace" className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-100 transition-opacity duration-300" />
         <GoldShimmer />
         <CornerMark pos="br" />
         <div className="absolute inset-0 flex flex-col justify-end p-4">
@@ -112,7 +112,7 @@ export default function BentoGrid() {
         <GoldShimmer />
         <CornerMark pos="tl" />
         <CornerMark pos="br" />
-        <img src="/public/Images/Necklace-2.jpg" alt="Ring" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+        <img src="/public/Images/Necklace-2.jpg" alt="Ring" className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-100 transition-opacity duration-300 " />
         <div className="absolute inset-0 flex flex-col justify-between px-4 py-5">
           <div>
             <span className="font-['Inter'] text-[10px] font-light tracking-[0.2em] text-[#c9a87c88] uppercase block mb-1">Acclaim</span>
