@@ -1,7 +1,34 @@
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+
 export default function BentoGrid() {
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const bentoRef = useRef(null);
+
+    useGSAP(() => {
+    gsap.from(bentoRef.current, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+        trigger: bentoRef.current,  // what element to watch
+        start: "top 80%",           // when top of element hits 80% down the viewport
+        // markers: true,           // uncomment to debug, remove in production
+        },
+    });
+    });
+
+
+
   return (
     <div
-      className="w-full p-5 rounded-2xl"
+      className="w-full p-5 rounded-2xl" 
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(10, 1fr)",
@@ -9,7 +36,7 @@ export default function BentoGrid() {
         gap: "10px",
         background: "#0a0805",
         border: "1px solid #c9a87c44",
-      }}
+      }} 
     >
       {/* C1 — Brand Hero */}
       <div
